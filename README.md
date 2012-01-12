@@ -6,7 +6,9 @@ White label what?
 Quite a few people have their own Shoutcast radio station these days.  There are a bunch of players out there either on the web or on the Android marketplace.  The problem is that web pages typically don't play on Android and the marketplace apps have 1000's of other radio stations to choose from.
 
 Wouldn't it be cooler to have your own dedicated app that only plays *your* station?  The goal of this project is two-fold:
+
 1. To make an android app for my friends over at KOUV radio
+
 2. To make this app as generic as possible so that the next developer can drop in a logo, change a few text strings, find/replace the package name and send his friends their own player.
 
 Current status
