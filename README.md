@@ -3,7 +3,7 @@ White Label Shoutcast
 
 White label what?
 -----------------
-Quite a few people have their own Shoutcast radio station these days.  There are a bunch of players out there either on the web or on the Android marketplace.  The problem is that web page typically doesn't play on Android and the marketplace apps have 1000's of other radio stations to choose from.
+Quite a few people have their own Shoutcast radio station these days.  There are a bunch of players out there either on the web or on the Android marketplace.  The problem is that web pages typically don't play on Android and the marketplace apps have 1000's of other radio stations to choose from.
 
 Wouldn't it be cooler to have your own dedicated app that only plays *your* station?  The goal of this project is two-fold:
 1. To make an android app for my friends over at KOUV radio
