@@ -1,4 +1,4 @@
-package com.giantrabbit.nagare;
+package com.shoutcastwhitelabel.player;
 
 import android.net.Uri;
 

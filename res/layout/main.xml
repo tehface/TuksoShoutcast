@@ -2,36 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-    <TextView android:id="@+id/alert"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android.text = ""
-    	android.visiblity = "gone" />
-	<TextView android:id="@+id/label"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="URL:"/>
-	<EditText android:id="@+id/url_editor"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/label"/>
+    >		
+    
+    <ImageView
+	    android:id="@+id/imageViewLogo"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentTop="true"
+	    android:layout_centerHorizontal="true"
+	    android:scaleType="fitXY"
+	    android:src="@drawable/logo" />,
+    
 	<ImageButton android:id="@+id/play" 
 	  style="@android:style/MediaButton.Play"
-	  android:layout_below="@id/url_editor" />
-	<TextView android:id="@+id/position"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/play"
-		android:text=""/>
-	<ScrollView android:id="@+id/output_scroll_view"
-		android:layout_width="fill_parent"
-		android:layout_height="80sp"
-		android:layout_alignParentBottom="true">						
-		<TextView android:id="@+id/output"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:singleLine="false"
-			android:text=""/>
-	</ScrollView>		
+	  android:layout_centerHorizontal="true"
+	  android:layout_below="@+id/imageViewLogo" />
+		
 </RelativeLayout>

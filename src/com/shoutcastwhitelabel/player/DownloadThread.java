@@ -1,6 +1,5 @@
-package com.giantrabbit.nagare;
+package com.shoutcastwhitelabel.player;
 
-import android.content.Context;
 import android.os.Process;
 
 import java.net.URL;
@@ -8,14 +7,12 @@ import java.net.URLConnection;
 
 public class DownloadThread extends Thread
 {
-	public Context m_context;
 	public String m_errors = "";
 	public URL m_url;
 	public ShoutcastFile m_shoutcast_file = null;
 	
-	public DownloadThread(Context context, URL url)
+	public DownloadThread(URL url)
 	{
-		m_context = context;
 		m_url = url;
 	}
 	
@@ -44,7 +41,7 @@ public class DownloadThread extends Thread
 			URLConnection connection = m_url.openConnection();
 			connection.setRequestProperty("User-Agent", "Nagare");
 			connection.connect();
-			m_shoutcast_file = new ShoutcastFile(m_context, connection);
+			m_shoutcast_file = new ShoutcastFile(connection);
 			m_shoutcast_file.download(this, connection.getInputStream());
 		}
 		catch (Exception e)

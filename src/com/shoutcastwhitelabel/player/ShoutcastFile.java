@@ -1,4 +1,4 @@
-package com.giantrabbit.nagare;
+package com.shoutcastwhitelabel.player;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -7,12 +7,10 @@ import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import android.content.Context;
 import android.os.Environment;
 
 public class ShoutcastFile
 {
-	Context m_context;
 	String m_shoutcast_name;
 	String m_file_name;
 	int m_bitrate;
@@ -24,9 +22,8 @@ public class ShoutcastFile
 	File m_file;
 	File m_nagare_dir;
 	
-	public ShoutcastFile(Context context, URLConnection connection)
+	public ShoutcastFile(URLConnection connection)
 	{
-		m_context = context;
 		m_shoutcast_name = connection.getHeaderField("icy-name");
 		m_bitrate = Integer.parseInt(connection.getHeaderField("icy-br"));
 		build_file_name();

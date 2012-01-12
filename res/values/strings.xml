@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Nagare</string>
-    <string name="app_name">Nagare</string>
+    <string name="service_connection_error">Error connecting to the service: </string>
+    <string name="playlist_null">The provided playlist was invalid: </string>
 </resources>

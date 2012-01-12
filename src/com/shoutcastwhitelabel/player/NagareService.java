@@ -1,36 +1,33 @@
-package com.giantrabbit.nagare;
+package com.shoutcastwhitelabel.player;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.shoutcastwhitelabel.player.INagareService;
+
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.media.MediaPlayer.OnCompletionListener;
-import android.media.MediaScannerConnection.MediaScannerConnectionClient;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 
 public class NagareService extends Service implements OnCompletionListener
 {
-	public URL m_url = null;
-	public DownloadThread m_download_thread = null;
-	public MediaPlayer m_media_player = null;
-	public Context m_context;
-	public int m_current_position = 0;
-	public String m_errors = "";
-	public int m_state;
-	public boolean m_scanned = false;
+	public static URL m_url = null;
+	public static DownloadThread m_download_thread = null;
+	public static MediaPlayer m_media_player = null;
+	public static int m_current_position = 0;
+	public static String m_errors = "";
+	public static int m_state = 0;
 	public static final int STOPPED = 0;
 	public static final int PLAYING = 1;
 	public static final int BUFFERING = 2;
-	public MediaScannerConnection m_scanner = null;
+	public static MediaScannerConnection m_scanner = null;
 	public static final int BUFFER_BEFORE_PLAY = 65536;
 	
-	private final Runnable m_run_buffer = new Runnable()
+	private final static Runnable m_run_buffer = new Runnable()
 	{
 		public void run()
 		{
@@ -42,31 +39,14 @@ public class NagareService extends Service implements OnCompletionListener
 		}
 	};
 	
-	private final Handler m_handler = new Handler();
-	
-	MediaScannerConnectionClient m_scanner_connection_client = new MediaScannerConnectionClient()
-	{
-
-		@Override
-		public void onMediaScannerConnected()
-		{
-			scan();
-		}
-
-		@Override
-		public void onScanCompleted(String path, Uri uri)
-		{
-
-		}
-		
-	};
+	private final static Handler m_handler = new Handler();
 	
 	public NagareService()
 	{
-		m_state = STOPPED;
+		//Don't set m_state here, we want to persist it across service binds/unbinds
 	}
 	
-	public int buffer()
+	public static int buffer()
 	{
 		if (m_download_thread == null || m_download_thread.m_shoutcast_file == null)
 		{
@@ -102,7 +82,6 @@ public class NagareService extends Service implements OnCompletionListener
 			m_media_player.seekTo(m_current_position);
 			m_media_player.start();
 			m_state = PLAYING;
-			scan();
 			return 0;
 		}
 		else
@@ -112,7 +91,7 @@ public class NagareService extends Service implements OnCompletionListener
 		}
 	}
 	
-	public void download(String url_string)
+	public static void download(String url_string)
 	{
 		m_errors = "";
 		try
@@ -126,27 +105,20 @@ public class NagareService extends Service implements OnCompletionListener
 		
 		if (m_errors == "")
 		{
-			m_context = getApplication().getApplicationContext();
-			if (m_scanner == null)
-			{
-				m_scanner = new MediaScannerConnection(m_context, m_scanner_connection_client);
-				m_scanner.connect();
-			}
-			m_download_thread = new DownloadThread(m_context, m_url);
+			m_download_thread = new DownloadThread(m_url);
 			m_download_thread.start();
 			m_current_position = 0;
 			m_state = BUFFERING;
-			m_scanned = false;
 			if (m_media_player == null)
 			{
 				m_media_player = new MediaPlayer();
-				m_media_player.setOnCompletionListener(this);
+				m_media_player.setOnCompletionListener(null);
 			}
 			m_run_buffer.run();
 		}
 	}
 	
-	public String errors()
+	public static String errors()
 	{
 		if (m_download_thread != null)
 		{
@@ -155,7 +127,7 @@ public class NagareService extends Service implements OnCompletionListener
 		return m_errors;
 	}
 	
-	public String file_name()
+	public static String file_name()
 	{
 		if (m_download_thread == null)
 		{
@@ -181,7 +153,7 @@ public class NagareService extends Service implements OnCompletionListener
 		m_run_buffer.run();
 	}
 	
-	public long position()
+	public static long position()
 	{
 		if (m_download_thread == null)
 		{
@@ -196,30 +168,12 @@ public class NagareService extends Service implements OnCompletionListener
 		return m_download_thread.m_shoutcast_file.m_current_write_pos;
 	}
 	
-	public void scan()
-	{
-		if (m_scanned)
-		{
-			return;
-		}
-		if (m_state != PLAYING)
-		{
-			return;
-		}
-		if (!m_scanner.isConnected())
-		{
-			return;
-		}
-		m_scanned = true;
-		m_scanner.scanFile(m_download_thread.m_shoutcast_file.file_path(), "audio/mpeg");
-	}
-	
-	public int state()
+	public static int state()
 	{
 		return m_state;
 	}
 	
-	public void stop()
+	public static void stop()
 	{
 		if (m_download_thread != null)
 		{
@@ -236,36 +190,36 @@ public class NagareService extends Service implements OnCompletionListener
 		m_state = STOPPED;
 	}
 
-	private final INagareService.Stub m_binder = new INagareService.Stub()
+	private final static INagareService.Stub m_binder = new INagareService.Stub()
 	{
 		public void download(String url)
 		{
-			NagareService.this.download(url);
+			NagareService.download(url);
 		}
 		
 		public String errors()
 		{
-			return NagareService.this.errors();
+			return NagareService.errors();
 		}
 		
 		public String file_name()
 		{
-			return NagareService.this.file_name();
+			return NagareService.file_name();
 		}
 		
 		public long position()
 		{
-			return NagareService.this.position();
+			return NagareService.position();
 		}
 		
 		public int state()
 		{
-			return NagareService.this.state();
+			return NagareService.state();
 		}
 		
 		public void stop()
 		{
-			NagareService.this.stop();
+			NagareService.stop();
 		}
 	};
 
