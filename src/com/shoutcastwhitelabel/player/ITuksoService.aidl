@@ -1,6 +1,6 @@
-package com.shoutcastwhitelabel.player;
+package net.shoutcastbitzend.player;
 
-interface INagareService
+interface ITuksoService
 {
 	void download(String url);
 	String errors();
