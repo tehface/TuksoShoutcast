@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tukso Radio</string>
-    <string name="default_station">http://streams.museter.com:8118</string>
+    <string name="default_station">http://198.27.70.26:12340</string>
     <string name="notification_text">Tukso Radio is Streaming!</string>
     <string name="notification_title">Tukso Radio</string>
     <string name="notification_body">Live Stream</string>
