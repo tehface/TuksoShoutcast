@@ -1,4 +1,4 @@
-package net.shoutcastbitzend.player;
+package com.shoutcastbitzend.player;
 
 interface ITuksoService
 {
