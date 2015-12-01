@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >		
     
@@ -16,6 +17,7 @@
 	<ImageButton android:id="@+id/play" 
 	  style="@android:style/MediaButton.Play"
 	  android:layout_centerHorizontal="true"
-	  android:layout_below="@+id/imageViewLogo" />
+	  android:layout_below="@+id/imageViewLogo"
+		tools:ignore="ContentDescription" />
 		
 </RelativeLayout>
