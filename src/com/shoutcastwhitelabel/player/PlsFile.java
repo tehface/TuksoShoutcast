@@ -1,4 +1,4 @@
-package com.shoutcastwhitelabel.player;
+package net.shoutcastbitzend.player;
 
 import java.io.File;
 import java.io.FileReader;
