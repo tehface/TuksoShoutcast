@@ -1,4 +1,4 @@
-package com.shoutcastwhitelabel.player;
+package net.shoutcastbitzend.player;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,7 +20,7 @@ public class ShoutcastFile
 	boolean m_notified_buffering_done = false;
 	String m_errors = "";
 	File m_file;
-	File m_nagare_dir;
+	File m_tukso_dir;
 	
 	public ShoutcastFile(URLConnection connection)
 	{
@@ -34,9 +34,9 @@ public class ShoutcastFile
 		Calendar now = new GregorianCalendar();
 		m_file_name = m_shoutcast_name.replaceAll("[\\/:*?\"<>|]", "_");
 		m_file_name += "-" + now.get(Calendar.YEAR) + now.get(Calendar.MONTH) + now.get(Calendar.DAY_OF_MONTH) + now.get(Calendar.HOUR_OF_DAY) + now.get(Calendar.MINUTE) + now.get(Calendar.SECOND) + ".mp3";
-		m_nagare_dir = new File(Environment.getExternalStorageDirectory() + "/Nagare");
-		m_nagare_dir.mkdirs();
-		m_file = new File(m_nagare_dir.getAbsolutePath(), m_file_name);
+		m_tukso_dir = new File(Environment.getExternalStorageDirectory() + "/Tukso");
+		m_tukso_dir.mkdirs();
+		m_file = new File(m_tukso_dir.getAbsolutePath(), m_file_name);
 	}
 	
 	public void done()
