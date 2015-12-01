@@ -19,12 +19,14 @@ What I customized
 * Restructured the source directories to match the new package name
 * Updated the Class names  to reflect the Tukso title
 * Updated the  Project Properties to build with SDK 17 instead of 4
-* Replaced the deprecated call to 
+* Replaced the deprecated call to  setLatestEventInfo in createnotification function
 
 
 Credits
 -------
-Huge thanks to the original author that I forked from, https://github.com/Dawnthorn/nagare
+Huge thanks to the original authors that I forked from..
+  https://github.com/dz0ny/White-Label-Shoutcast
+  ( which forked from https://github.com/Dawnthorn/nagare )
 
 License
 -------
