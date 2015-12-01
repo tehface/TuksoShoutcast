@@ -5,7 +5,7 @@ The goal of this project is two-fold:
 
 1. To make an android app for my shoutcast stream 
 
-2. To update the SDK level of the project I cloned so it works with modern versions of Android.
+2. To update the API level of the project I cloned so it works with modern versions of Android.
 
 Current status
 --------------
@@ -18,7 +18,7 @@ What I customized
 * Find/replaced the package name (com.shoutcastwhitelabel.player)
 * Restructured the source directories to match the new package name
 * Updated the Class names  to reflect the Tukso title
-* Updated the  Project Properties to build with SDK 17 instead of 4
+* Updated the  Project Properties to build with API 17 instead of 4
 * Replaced the deprecated call to  setLatestEventInfo in createnotification function
 
 
