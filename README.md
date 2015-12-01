@@ -1,27 +1,26 @@
-White Label Shoutcast
+Tukso Shoutcast
 =====================
 
-White label what?
------------------
-Quite a few people have their own Shoutcast radio station these days.  There are a bunch of players out there either on the web or on the Android marketplace.  The problem is that web pages typically don't play on Android and the marketplace apps have 1000's of other radio stations to choose from.
+The goal of this project is two-fold:
 
-Wouldn't it be cooler to have your own dedicated app that only plays *your* station?  The goal of this project is two-fold:
+1. To make an android app for my shoutcast stream 
 
-1. To make an android app for my friends over at KOUV radio
-
-2. To make this app as generic as possible so that the next developer can drop in a logo, change a few text strings, find/replace the package name and send his friends their own player.
+2. To update the SDK level of the project I cloned so it works with modern versions of Android.
 
 Current status
 --------------
 The player is in a basic working state.  You can start/stop the stream.  When the stream is started, a notification is placed in the Notification Bar.  Stopping the stream removes the notification.
 
-How to customize
+What I customized
 ----------------
-* Edit the 5 strings in brandable.xml, once of them is the address to your stream
-* Change the logo
-* Change the icon (it's from openclipart.org if you are looking for more)
-* Find/replace the package name com.shoutcastwhitelabel.player with your package name
-* Scream "booyah"
+* Edited the 5 strings in brandable.xml.
+* Changed the logo
+* Find/replaced the package name (com.shoutcastwhitelabel.player)
+* Restructured the source directories to match the new package name
+* Updated the Class names  to reflect the Tukso title
+* Updated the  Project Properties to build with SDK 17 instead of 4
+* Replaced the deprecated call to 
+
 
 Credits
 -------
