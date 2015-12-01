@@ -1,4 +1,4 @@
-package com.shoutcastwhitelabel.player;
+package net.shoutcastbitzend.player;
 
 import android.os.Process;
 
@@ -39,7 +39,7 @@ public class DownloadThread extends Thread
 		try
 		{
 			URLConnection connection = m_url.openConnection();
-			connection.setRequestProperty("User-Agent", "Nagare");
+			connection.setRequestProperty("User-Agent", "Tukso");
 			connection.connect();
 			m_shoutcast_file = new ShoutcastFile(connection);
 			m_shoutcast_file.download(this, connection.getInputStream());
