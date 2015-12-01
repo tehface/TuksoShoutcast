@@ -1,8 +1,8 @@
-package com.shoutcastwhitelabel.player;
+package net.shoutcastbitzend.player;
 
 import java.net.URL;
 
-import com.shoutcastwhitelabel.player.INagareService;
+import net.shoutcastbitzend.player.ITuksoService;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -23,21 +23,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class Nagare extends Activity implements OnClickListener 
+public class Tukso extends Activity implements OnClickListener 
 {
 	private Context m_context;
 	private URL m_url;
 	private ImageButton m_play_button;
-	private INagareService m_nagare_service = null;
-	private static final String TAG = "WhiteLabelRadio";
+	private ITuksoService m_tukso_service = null;
+	private static final String TAG = "TuksoRadio";
 	private static final int NOTIFICATION_ID = 454;
 	private NotificationManager mNotificationManager = null;
 	
-	private ServiceConnection m_nagare_service_connection = new ServiceConnection()
+	private ServiceConnection m_tukso_service_connection = new ServiceConnection()
 	{
 		public void onServiceConnected(ComponentName classname, IBinder service)
 		{
-			m_nagare_service = INagareService.Stub.asInterface(service);
+			m_tukso_service = ITuksoService.Stub.asInterface(service);
 			
 			//Refresh button state after the connection binds, this covers the case where the app starts
 			//and the service is already in the background playing
@@ -46,7 +46,7 @@ public class Nagare extends Activity implements OnClickListener
 
 		public void onServiceDisconnected(ComponentName name)
 		{
-			m_nagare_service = null;
+			m_tukso_service = null;
 		}	
 	};
 	
@@ -54,21 +54,21 @@ public class Nagare extends Activity implements OnClickListener
 	
 	public void onClick(View v)
 	{
-		if (m_nagare_service == null)
+		if (m_tukso_service == null)
 		{
 			return;
 		}
 		try
 		{
-			int state = m_nagare_service.state();
-			if (state == NagareService.STOPPED)
+			int state = m_tukso_service.state();
+			if (state == TuksoService.STOPPED)
 			{
-				m_nagare_service.download(getString(R.string.default_station));
+				m_tukso_service.download(getString(R.string.default_station));
 				createNotification();				
 			}
 			else
 			{
-				m_nagare_service.stop();
+				m_tukso_service.stop();
 				mNotificationManager.cancel(NOTIFICATION_ID);
 			}
 		}
@@ -91,7 +91,7 @@ public class Nagare extends Activity implements OnClickListener
         m_play_button.setImageResource(android.R.drawable.ic_media_play);
         
         m_context = this;
-        bindService(new Intent(m_context, NagareService.class), m_nagare_service_connection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(m_context, TuksoService.class), m_tukso_service_connection, Context.BIND_AUTO_CREATE);
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     }
     
@@ -101,13 +101,13 @@ public class Nagare extends Activity implements OnClickListener
     	super.onStop();
     	
     	//Unbind the service when the user exits the application but don't stop it
-    	if (m_nagare_service == null)
+    	if (m_tukso_service == null)
 		{
 			return;
 		}
 		try
 		{
-		    m_context.unbindService(m_nagare_service_connection);
+		    m_context.unbindService(m_tukso_service_connection);
 		}
 		catch( IllegalArgumentException e){}
 		catch (RuntimeException e){} 
@@ -119,14 +119,14 @@ public class Nagare extends Activity implements OnClickListener
      */
     public void refresh()
     {
-    	if (m_nagare_service == null)
+    	if (m_tukso_service == null)
     	{
     		return;
     	}
     	try
 		{
-    		int state = m_nagare_service.state();
-    		if (state == NagareService.STOPPED)
+    		int state = m_tukso_service.state();
+    		if (state == TuksoService.STOPPED)
     		{
     			m_play_button.setImageResource(android.R.drawable.ic_media_play);
     		}
@@ -134,7 +134,7 @@ public class Nagare extends Activity implements OnClickListener
     		{
     			m_play_button.setImageResource(android.R.drawable.ic_media_pause);
     		}
-			String errors = m_nagare_service.errors();
+			String errors = m_tukso_service.errors();
 			if (errors != "")
 			{
 				Log.e(TAG, errors);
@@ -159,7 +159,7 @@ public class Nagare extends Activity implements OnClickListener
     	Context context = getApplicationContext();
     	CharSequence contentTitle = getString(R.string.notification_title);
     	CharSequence contentText =  getString(R.string.notification_body);
-    	Intent notificationIntent = new Intent(this, Nagare.class);
+    	Intent notificationIntent = new Intent(this, Tukso.class);
     	PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
     	notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
