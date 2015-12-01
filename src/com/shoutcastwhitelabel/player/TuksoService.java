@@ -1,9 +1,9 @@
-package com.shoutcastwhitelabel.player;
+package net.shoutcastbitzend.player;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.shoutcastwhitelabel.player.INagareService;
+import net.shoutcastbitzend.player.ITuksoService;
 
 import android.app.Service;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Handler;
 import android.os.IBinder;
 
-public class NagareService extends Service implements OnCompletionListener
+public class TuksoService extends Service implements OnCompletionListener
 {
 	public static URL m_url = null;
 	public static DownloadThread m_download_thread = null;
@@ -41,7 +41,7 @@ public class NagareService extends Service implements OnCompletionListener
 	
 	private final static Handler m_handler = new Handler();
 	
-	public NagareService()
+	public TuksoService()
 	{
 		//Don't set m_state here, we want to persist it across service binds/unbinds
 	}
@@ -190,36 +190,36 @@ public class NagareService extends Service implements OnCompletionListener
 		m_state = STOPPED;
 	}
 
-	private final static INagareService.Stub m_binder = new INagareService.Stub()
+	private final static ITuksoService.Stub m_binder = new ITuksoService.Stub()
 	{
 		public void download(String url)
 		{
-			NagareService.download(url);
+			TuksoService.download(url);
 		}
 		
 		public String errors()
 		{
-			return NagareService.errors();
+			return TuksoService.errors();
 		}
 		
 		public String file_name()
 		{
-			return NagareService.file_name();
+			return TuksoService.file_name();
 		}
 		
 		public long position()
 		{
-			return NagareService.position();
+			return TuksoService.position();
 		}
 		
 		public int state()
 		{
-			return NagareService.state();
+			return TuksoService.state();
 		}
 		
 		public void stop()
 		{
-			NagareService.stop();
+			TuksoService.stop();
 		}
 	};
 
