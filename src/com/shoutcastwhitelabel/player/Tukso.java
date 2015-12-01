@@ -1,8 +1,8 @@
-package net.shoutcastbitzend.player;
+package com.shoutcastbitzend.player;
 
 import java.net.URL;
 
-import net.shoutcastbitzend.player.ITuksoService;
+import com.shoutcastbitzend.player.ITuksoService;
 
 import android.app.Activity;
 import android.app.Notification;
