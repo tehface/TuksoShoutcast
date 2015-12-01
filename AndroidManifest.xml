@@ -6,12 +6,12 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
-	    <activity android:name="com.shoutcastwhitelabel.player.Nagare" android:label="@string/app_name">
+	    <activity android:name="com.shoutcastwhitelabel.player.Tukso" android:label="@string/app_name">
 		    <intent-filter>
 			    <action android:name="android.intent.action.MAIN" />
 			    <category android:name="android.intent.category.LAUNCHER" />
 		    </intent-filter>
 	    </activity>
-    <service android:exported="true" android:name="com.shoutcastwhitelabel.player.NagareService" android:enabled="true"></service>
+    <service android:exported="true" android:name="com.shoutcastwhitelabel.player.TuksoService" android:enabled="true"></service>
 </application>
 </manifest> 
