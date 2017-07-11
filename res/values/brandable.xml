@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">VERGE Radio</string>
+    <string name="app_name">RadioCrypto.com</string>
     <string name="default_station">http://104.131.121.96:8000</string>
-    <string name="notification_text">VERGE Radio is Streaming!</string>
-    <string name="notification_title">VERGE Radio</string>
+    <string name="notification_text">RadioCrypto is Streaming!</string>
+    <string name="notification_title">RadioCrypto</string>
     <string name="notification_body">Live Stream</string>
 </resources>
